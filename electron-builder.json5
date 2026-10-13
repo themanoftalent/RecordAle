@@ -52,8 +52,8 @@
   "publish": [
     {
       "provider": "github",
-      "owner": "webadderall",
-      "repo": "Recordly",
+      "owner": "themanoftalent",
+      "repo": "RecoreAle",
       "tagNamePrefix": "v",
       "publishAutoUpdate": true
     }
