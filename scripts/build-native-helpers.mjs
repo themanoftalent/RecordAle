@@ -78,14 +78,16 @@ for (const target of getTargetConfigs()) {
 		}
 
 		await chmod(outputPath, 0o755);
-		const recorealeOutputPath = path.join(
-			outputDir,
-			helper.output.replace(/^recordly-/, "recoreale-"),
-		);
-		if (recorealeOutputPath !== outputPath) {
-			const { copyFile } = await import("node:fs/promises");
-			await copyFile(outputPath, recorealeOutputPath);
-			await chmod(recorealeOutputPath, 0o755);
+		const { copyFile } = await import("node:fs/promises");
+		for (const prefix of ["recordale-", "recoreale-"]) {
+			const brandedPath = path.join(
+				outputDir,
+				helper.output.replace(/^recordly-/, prefix),
+			);
+			if (brandedPath !== outputPath) {
+				await copyFile(outputPath, brandedPath);
+				await chmod(brandedPath, 0o755);
+			}
 		}
 		console.log(
 			`[build-native-helpers] Built ${helper.output} (${target.archTag}) -> ${outputPath}`,

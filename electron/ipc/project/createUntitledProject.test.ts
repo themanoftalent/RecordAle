@@ -8,18 +8,18 @@ afterEach(async () => {
 	await Promise.all(dirs.splice(0).map((dir) => fs.rm(dir, { recursive: true, force: true })));
 });
 it("publishes complete, uniquely named projects under concurrent creation without replacing existing projects", async () => {
-	const dir = await fs.mkdtemp(path.join(os.tmpdir(), "recoreale-new-"));
+	const dir = await fs.mkdtemp(path.join(os.tmpdir(), "recordale-new-"));
 	dirs.push(dir);
-	await fs.writeFile(path.join(dir, "Untitled Project.recoreale"), "original");
+	await fs.writeFile(path.join(dir, "Untitled Project.recordale"), "original");
 	const paths = await Promise.all(
 		[1, 2, 3].map((n) => createUntitledProject(dir, JSON.stringify({ id: n }))),
 	);
 	expect(paths.map((p) => path.basename(p)).sort()).toEqual([
-		"Untitled Project 1.recoreale",
-		"Untitled Project 2.recoreale",
-		"Untitled Project 3.recoreale",
+		"Untitled Project 1.recordale",
+		"Untitled Project 2.recordale",
+		"Untitled Project 3.recordale",
 	]);
-	expect(await fs.readFile(path.join(dir, "Untitled Project.recoreale"), "utf8")).toBe("original");
+	expect(await fs.readFile(path.join(dir, "Untitled Project.recordale"), "utf8")).toBe("original");
 	for (let i = 0; i < paths.length; i++)
 		expect(JSON.parse(await fs.readFile(paths[i], "utf8"))).toEqual({ id: i + 1 });
 	expect((await fs.readdir(dir)).filter((p) => p.endsWith(".tmp"))).toEqual([]);

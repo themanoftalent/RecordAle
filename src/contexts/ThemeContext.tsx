@@ -13,23 +13,31 @@ interface ThemeContextValue {
 	toggleTheme: () => void;
 }
 
-const THEME_STORAGE_KEY = "recoreale.theme";
-const LEGACY_THEME_STORAGE_KEY = "recordly.theme";
+const THEME_STORAGE_KEY = "recordale.theme";
+const LEGACY_THEME_STORAGE_KEYS = ["recoreale.theme", "recordly.theme"];
 
 const ThemeContext = createContext<ThemeContextValue | null>(null);
 
 export function loadThemePreference(): ThemePreference {
-	const persisted =
-		loadAppSetting<unknown>(THEME_STORAGE_KEY) ??
-		loadAppSetting<unknown>(LEGACY_THEME_STORAGE_KEY);
+	let persisted = loadAppSetting<unknown>(THEME_STORAGE_KEY);
+	if (!persisted) {
+		for (const key of LEGACY_THEME_STORAGE_KEYS) {
+			persisted = loadAppSetting<unknown>(key);
+			if (persisted) break;
+		}
+	}
 	if (persisted === "light" || persisted === "dark" || persisted === "system") {
 		return persisted;
 	}
 
 	try {
-		const stored =
-			globalThis.localStorage?.getItem(THEME_STORAGE_KEY) ??
-			globalThis.localStorage?.getItem(LEGACY_THEME_STORAGE_KEY);
+		let stored = globalThis.localStorage?.getItem(THEME_STORAGE_KEY);
+		if (!stored) {
+			for (const key of LEGACY_THEME_STORAGE_KEYS) {
+				stored = globalThis.localStorage?.getItem(key);
+				if (stored) break;
+			}
+		}
 		if (stored === "light" || stored === "dark" || stored === "system") {
 			return stored;
 		}

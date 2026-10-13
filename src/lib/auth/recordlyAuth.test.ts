@@ -68,7 +68,7 @@ for (const dev of [true, false]) {
 			options: {
 				emailRedirectTo: dev
 					? "http://127.0.0.1:43821/auth/callback"
-					: "recoreale://auth/callback",
+					: "recordale://auth/callback",
 				shouldCreateUser: true,
 			},
 		});
@@ -78,7 +78,7 @@ for (const dev of [true, false]) {
 it("does not accept dashboard implicit session tokens as a PKCE callback", async () => {
 	const { completeAuthCallback } = await import("./recordlyAuth");
 	await expect(
-		completeAuthCallback("recoreale://auth/callback#access_token=test&refresh_token=test"),
-	).rejects.toThrow("Request a new sign-in link from RecoreAle");
+		completeAuthCallback("recordale://auth/callback#access_token=test&refresh_token=test"),
+	).rejects.toThrow("Request a new sign-in link from RecordAle");
 	expect(exchange).not.toHaveBeenCalled();
 });

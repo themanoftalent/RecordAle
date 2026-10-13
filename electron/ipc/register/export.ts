@@ -56,7 +56,7 @@ import {
 function getPartialExportDestinationPath(destinationPath: string) {
 	const parsed = path.parse(destinationPath);
 	const suffix = `${Date.now()}-${Math.random().toString(36).slice(2, 8)}`;
-	return path.join(parsed.dir, `.recoreale-partial-${parsed.name}-${suffix}${parsed.ext}`);
+	return path.join(parsed.dir, `.recordale-partial-${parsed.name}-${suffix}${parsed.ext}`);
 }
 
 const MAX_IN_MEMORY_EXPORT_BYTES = 0x7fffffff;
@@ -267,7 +267,7 @@ export function registerExportHandlers() {
 
 				const ffmpegPath = getFfmpegBinaryPath();
 				const inputMode = options.inputMode ?? "rawvideo";
-				const sessionId = `recoreale-export-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`;
+				const sessionId = `recordale-export-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`;
 				const outputPath = path.join(app.getPath("temp"), `${sessionId}.mp4`);
 
 				let encoderName: string;

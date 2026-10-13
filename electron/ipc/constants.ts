@@ -1,8 +1,8 @@
 import path from "node:path";
 import { USER_DATA_PATH } from "../appPaths";
 
-export const PROJECT_FILE_EXTENSION = "recoreale";
-export const LEGACY_PROJECT_FILE_EXTENSIONS = ["recordly", "openscreen"];
+export const PROJECT_FILE_EXTENSION = "recordale";
+export const LEGACY_PROJECT_FILE_EXTENSIONS = ["recoreale", "recordly", "openscreen"];
 export const PROJECTS_DIRECTORY_NAME = "Projects";
 export const PROJECT_THUMBNAIL_SUFFIX = ".preview.png";
 export const RECENT_PROJECTS_FILE = path.join(USER_DATA_PATH, "recent-projects.json");
@@ -13,7 +13,7 @@ export const COUNTDOWN_SETTINGS_FILE = path.join(USER_DATA_PATH, "countdown-sett
 export const APP_SETTINGS_FILE = path.join(USER_DATA_PATH, "app-settings.json");
 export const AUTO_RECORDING_PREFIX = "recording-";
 export const ALLOW_RECORDLY_WINDOW_CAPTURE = Boolean(process.env["VITE_DEV_SERVER_URL"]);
-export const RECORDING_SESSION_MANIFEST_SUFFIX = ".recoreale-session.json";
+export const RECORDING_SESSION_MANIFEST_SUFFIX = ".recordale-session.json";
 export const LEGACY_RECORDING_SESSION_MANIFEST_SUFFIX = ".recordly-session.json";
 export const WHISPER_MODEL_DOWNLOAD_URL =
 	"https://huggingface.co/ggerganov/whisper.cpp/resolve/main/ggml-small.bin";

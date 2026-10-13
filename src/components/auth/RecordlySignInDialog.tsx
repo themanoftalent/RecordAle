@@ -138,7 +138,7 @@ export function RecordlySignInDialog({
 		void run("link", async () => {
 			await sendSignInLink(email.trim());
 			setMessage(
-				"Check your inbox to verify your email and continue to RecoreAle. Open the link on this computer with RecoreAle running.",
+				"Check your inbox to verify your email and continue to RecordAle. Open the link on this computer with RecordAle running.",
 			);
 			setLinkSent(true);
 		});
@@ -161,7 +161,7 @@ export function RecordlySignInDialog({
 					<MotionDialog
 						layout={!onboarding}
 						transition={transition}
-						aria-label={onboarding ? "Welcome to RecoreAle" : undefined}
+						aria-label={onboarding ? "Welcome to RecordAle" : undefined}
 						data-onboarding-state={
 							onboarding ? (feature ? "feature" : "login") : undefined
 						}
@@ -206,15 +206,15 @@ export function RecordlySignInDialog({
 										<Modal.Header className="items-center gap-3 text-center">
 											<div
 												className="flex items-center gap-3"
-												aria-label="RecoreAle"
+												aria-label="RecordAle"
 											>
 												<img
-													src={`${import.meta.env.BASE_URL}app-icons/recoreale-128.png`}
+													src={`${import.meta.env.BASE_URL}app-icons/recordale-128.png`}
 													alt=""
 													className="size-12 rounded-xl"
 												/>
 												<span className="text-3xl font-semibold tracking-tight">
-													RecoreAle
+													RecordAle
 												</span>
 											</div>
 											<Modal.Heading className="whitespace-nowrap text-[clamp(12px,5cqw,22px)] font-semibold leading-tight tracking-tight">

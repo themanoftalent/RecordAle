@@ -1,7 +1,7 @@
 // @see - https://www.electron.build/configuration/configuration
 {
   "$schema": "https://raw.githubusercontent.com/electron-userland/electron-builder/master/packages/app-builder-lib/scheme.json",
-  "appId": "com.softai.recoreale",
+  "appId": "com.softai.recordale",
   "electronUpdaterCompatibility": ">=2.16",
   "asar": true,
   "asarUnpack": [
@@ -10,11 +10,11 @@
     "node_modules/uiohook-napi/**",
     "electron/native/bin/**"
   ],
-  "productName": "RecoreAle",
+  "productName": "RecordAle",
   "protocols": [
     {
-      "name": "RecoreAle authentication",
-      "schemes": ["recoreale", "recordly"]
+      "name": "RecordAle authentication",
+      "schemes": ["recordale", "recoreale", "recordly"]
     }
   ],
   "npmRebuild": true,
@@ -53,56 +53,58 @@
     {
       "provider": "github",
       "owner": "themanoftalent",
-      "repo": "RecoreAle",
+      "repo": "RecordAle",
       "tagNamePrefix": "v",
       "publishAutoUpdate": true
     }
   ],
 
   "mac": {
-    "hardenedRuntime": true,
-    "entitlements": "build/entitlements.mac.plist",
-    "entitlementsInherit": "build/entitlements.mac.inherit.plist",
+    "hardenedRuntime": false,
+    "gatekeeperAssess": false,
     "target": [
       {
         "target": "dmg",
-        "arch": ["x64", "arm64"]
+        "arch": ["arm64", "x64"]
       },
       {
         "target": "zip",
-        "arch": ["x64", "arm64"]
+        "arch": ["arm64", "x64"]
       }
     ],
     "icon": "icons/icons/mac/icon.icns",
     "artifactName": "${productName}-${arch}.${ext}",
     "extendInfo": {
-      "NSAudioCaptureUsageDescription": "RecoreAle needs audio capture permission to record system audio.",
-      "NSCameraUsageDescription": "RecoreAle needs camera access to record webcam video.",
-      "NSMicrophoneUsageDescription": "RecoreAle needs microphone access to record voice audio.",
+      "NSAudioCaptureUsageDescription": "RecordAle needs audio capture permission to record system audio.",
+      "NSCameraUsageDescription": "RecordAle needs camera access to record webcam video.",
+      "NSMicrophoneUsageDescription": "RecordAle needs microphone access to record voice audio.",
       "NSCameraUseContinuityCameraDeviceType": true,
       "com.apple.security.device.audio-input": true,
       "CFBundleDocumentTypes": [
         {
-          "CFBundleTypeName": "RecoreAle Project",
+          "CFBundleTypeName": "RecordAle Project",
           "CFBundleTypeRole": "Editor",
-          "CFBundleTypeExtensions": ["recoreale", "recordly"],
+          "CFBundleTypeExtensions": ["recordale", "recoreale", "recordly"],
           "CFBundleTypeIconFile": "icon.icns",
           "LSHandlerRank": "Owner",
-          "LSItemContentTypes": ["com.softai.recoreale.project", "dev.recordly.app.project"]
+          "LSItemContentTypes": ["com.softai.recordale.project", "com.softai.recoreale.project", "dev.recordly.app.project"]
         }
       ],
       "UTExportedTypeDeclarations": [
         {
-          "UTTypeIdentifier": "com.softai.recoreale.project",
-          "UTTypeDescription": "RecoreAle Project",
+          "UTTypeIdentifier": "com.softai.recordale.project",
+          "UTTypeDescription": "RecordAle Project",
           "UTTypeConformsTo": ["public.json"],
           "UTTypeTagSpecification": {
-            "public.filename-extension": ["recoreale", "recordly"],
-            "public.mime-type": "application/x-recoreale-project"
+            "public.filename-extension": ["recordale", "recoreale", "recordly"],
+            "public.mime-type": "application/x-recordale-project"
           }
         }
       ]
     }
+  },
+  "dmg": {
+    "sign": false
   },
   "linux": {
     "target": [
@@ -117,7 +119,7 @@
       "nsis"
     ],
     "icon": "icons/icons/win/icon.ico",
-    "executableName": "RecoreAle",
+    "executableName": "RecordAle",
     "artifactName": "${productName}-windows-${arch}.${ext}"
   },
   "nsis": {
@@ -125,6 +127,6 @@
     "allowToChangeInstallationDirectory": true,
     "createDesktopShortcut": true,
     "createStartMenuShortcut": true,
-    "shortcutName": "RecoreAle"
+    "shortcutName": "RecordAle"
   }
 }

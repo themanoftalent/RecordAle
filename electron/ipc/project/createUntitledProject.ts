@@ -5,7 +5,7 @@ import { PROJECT_FILE_EXTENSION } from "../constants";
 /** Publish a complete new project without overwriting a concurrent or existing save. */
 export async function createUntitledProject(directory: string, contents: string) {
 	await fs.mkdir(directory, { recursive: true });
-	const temporary = path.join(directory, `.recoreale-new-${randomUUID()}.tmp`);
+	const temporary = path.join(directory, `.recordale-new-${randomUUID()}.tmp`);
 	try {
 		const file = await fs.open(temporary, "wx");
 		try {

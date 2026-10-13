@@ -61,10 +61,17 @@ export async function resolveRecordingSessionManifest(
 		content = await fs.readFile(manifestPath, "utf-8");
 	} catch {
 		try {
-			manifestPath = getLegacyRecordingSessionManifestPath(normalizedVideoPath);
+			const ext = path.extname(normalizedVideoPath);
+			const base = path.basename(normalizedVideoPath, ext);
+			manifestPath = path.join(path.dirname(normalizedVideoPath), `${base}.recoreale-session.json`);
 			content = await fs.readFile(manifestPath, "utf-8");
 		} catch {
-			return null;
+			try {
+				manifestPath = getLegacyRecordingSessionManifestPath(normalizedVideoPath);
+				content = await fs.readFile(manifestPath, "utf-8");
+			} catch {
+				return null;
+			}
 		}
 	}
 

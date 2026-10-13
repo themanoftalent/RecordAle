@@ -81,7 +81,7 @@ it("lists recordings, moves recordings and their companions to Trash with revers
 	await expect(fs.access(first)).rejects.toThrow();
 	await expect(fs.access(path.join(state.root, "recording-new.mic.wav"))).rejects.toThrow();
 	expect(
-		(await fs.readdir(state.root)).filter((name) => name.startsWith(".recoreale-trash-") || name.startsWith(".recordly-trash-")),
+		(await fs.readdir(state.root)).filter((name) => name.startsWith(".recordale-trash-") || name.startsWith(".recoreale-trash-") || name.startsWith(".recordly-trash-")),
 	).toHaveLength(1);
 	await setRecordingsRemoved([first, second], false);
 	expect(await listRecordings()).toHaveLength(2);

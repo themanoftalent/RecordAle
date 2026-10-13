@@ -1,15 +1,15 @@
 {
-	"name": "recoreale",
-	"productName": "RecoreAle",
+	"name": "recordale",
+	"productName": "RecordAle",
 	"description": "A free, creator-focused screen recorder with auto-zoom, cursor effects, backgrounds, annotations, and more - built for polished videos out of the box.",
 	"author": "SoftAI Yazılım (Mehmet Akif Çifçi)",
-	"homepage": "https://github.com/themanoftalent/RecoreAle",
+	"homepage": "https://github.com/themanoftalent/RecordAle",
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/themanoftalent/RecoreAle.git"
+		"url": "https://github.com/themanoftalent/RecordAle.git"
 	},
 	"bugs": {
-		"url": "https://github.com/themanoftalent/RecoreAle/issues"
+		"url": "https://github.com/themanoftalent/RecordAle/issues"
 	},
 	"private": true,
 	"version": "1.4.0",

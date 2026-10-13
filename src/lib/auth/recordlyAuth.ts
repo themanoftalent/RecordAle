@@ -5,7 +5,7 @@ const supabaseUrl = import.meta.env.VITE_SUPABASE_URL?.trim();
 const supabasePublishableKey = import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY?.trim();
 const callbackUrl = import.meta.env.DEV
 	? "http://127.0.0.1:43821/auth/callback"
-	: "recoreale://auth/callback";
+	: "recordale://auth/callback";
 
 export const recordlyAuthConfigured = Boolean(supabaseUrl && supabasePublishableKey);
 
@@ -23,7 +23,7 @@ export const recordlyAuth = recordlyAuthConfigured
 function requireAuth() {
 	if (!recordlyAuth) {
 		throw new Error(
-			"RecoreAle Auth is not configured. Add the Supabase URL and publishable key.",
+			"RecordAle Auth is not configured. Add the Supabase URL and publishable key.",
 		);
 	}
 	return recordlyAuth;
@@ -95,7 +95,7 @@ async function exchangeAuthCallback(url: string): Promise<void> {
 	if (providerError) throw new Error(providerError);
 	const code = params.get("code");
 	if (!code) {
-		throw new Error("Request a new sign-in link from RecoreAle, then open it on this computer.");
+		throw new Error("Request a new sign-in link from RecordAle, then open it on this computer.");
 	}
 	const client = requireAuth();
 	const { error } = await client.auth.exchangeCodeForSession(code);

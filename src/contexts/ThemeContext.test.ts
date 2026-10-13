@@ -50,12 +50,18 @@ describe("ThemeContext persistence", () => {
 	});
 
 	it("loads the persisted theme preference from Electron app settings", () => {
+		stubElectronSettings({ "recordale.theme": "dark" });
+
+		expect(loadThemePreference()).toBe("dark");
+	});
+
+	it("falls back to legacy recoreale.theme when recordale.theme is unset", () => {
 		stubElectronSettings({ "recoreale.theme": "dark" });
 
 		expect(loadThemePreference()).toBe("dark");
 	});
 
-	it("falls back to legacy recordly.theme when recoreale.theme is unset", () => {
+	it("falls back to legacy recordly.theme when recordale.theme is unset", () => {
 		stubElectronSettings({ "recordly.theme": "dark" });
 
 		expect(loadThemePreference()).toBe("dark");
@@ -66,11 +72,11 @@ describe("ThemeContext persistence", () => {
 
 		persistThemePreference("dark");
 
-		expect(settingsStore.get("recoreale.theme")).toBe("dark");
+		expect(settingsStore.get("recordale.theme")).toBe("dark");
 	});
 
 	it("falls back to localStorage when Electron settings are unavailable", () => {
-		vi.stubGlobal("localStorage", createStorageMock({ "recoreale.theme": "light" }));
+		vi.stubGlobal("localStorage", createStorageMock({ "recordale.theme": "light" }));
 
 		expect(loadThemePreference()).toBe("light");
 	});

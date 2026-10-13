@@ -4,7 +4,7 @@ import path from "node:path";
 export function isLibrarySequenceSource(file: string): boolean {
 	const dirName = path.basename(path.dirname(file));
 	return (
-		(dirName === ".recoreale-media" || dirName === ".recordly-media") &&
+		(dirName === ".recordale-media" || dirName === ".recoreale-media" || dirName === ".recordly-media") &&
 		/^[0-9a-f-]{36}\.mp4$/.test(path.basename(file))
 	);
 }

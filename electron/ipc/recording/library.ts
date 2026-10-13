@@ -23,7 +23,7 @@ export function listRecordings(includeSources = false): Promise<RecordingLibrary
 			const staged = path.join(root, entry.name);
 			if (
 				entry.isDirectory() &&
-				/^\.(?:recoreale|recordly)-trash-[A-Za-z0-9]{6}$/.test(entry.name) &&
+				/^\.(?:recordale|recoreale|recordly)-trash-[A-Za-z0-9]{6}$/.test(entry.name) &&
 				![...undoBatches.values()].some((batch) => batch.bundle === staged)
 			) {
 				await shell.trashItem(staged);
@@ -63,6 +63,7 @@ function belongsToRecording(name: string, video: string) {
 			/\.(?:system|mic|microphone|audio|webcam)\.(?:wav|webm|mp4|m4a)(?:\.json)?$/i.test(
 				name,
 			)) ||
+		name === `${stem}.recordale-session.json` ||
 		name === `${stem}.recoreale-session.json` ||
 		name === `${stem}.recordly-session.json` ||
 		name === `${stem}.recording-session.json` ||
@@ -146,7 +147,7 @@ export function setRecordingsRemoved(paths: string[], removed: boolean): Promise
 			)
 			.map((entry) => path.join(root, entry.name));
 		await finishPendingTrash();
-		const bundle = await fs.mkdtemp(path.join(root, ".recoreale-trash-"));
+		const bundle = await fs.mkdtemp(path.join(root, ".recordale-trash-"));
 		const moved: string[] = [];
 		try {
 			for (const file of files) {
