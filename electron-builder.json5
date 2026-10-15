@@ -1,0 +1,132 @@
+// @see - https://www.electron.build/configuration/configuration
+{
+  "$schema": "https://raw.githubusercontent.com/electron-userland/electron-builder/master/packages/app-builder-lib/scheme.json",
+  "appId": "com.softai.recordale",
+  "electronUpdaterCompatibility": ">=2.16",
+  "asar": true,
+  "asarUnpack": [
+    "node_modules/ffmpeg-static/**",
+    "node_modules/ffprobe-static/**",
+    "node_modules/uiohook-napi/**",
+    "electron/native/bin/**"
+  ],
+  "productName": "RecordAle",
+  "protocols": [
+    {
+      "name": "RecordAle authentication",
+      "schemes": ["recordale", "recoreale", "recordly"]
+    }
+  ],
+  "npmRebuild": true,
+  "buildDependenciesFromSource": true,
+  "compression": "normal",
+  "directories": {
+    "output": "release"
+  },
+  "files": [
+    "dist",
+    "!dist/wallpapers/**",
+    "dist-electron",
+    "electron/native/bin",
+    "!electron/native/bin/**/whisper-bench*",
+    "!electron/native/bin/**/whisper-quantize*",
+    "!electron/native/bin/**/whisper-server*",
+    "!electron/native/bin/**/whisper-vad-speech-segments*",
+    "!node_modules/ffprobe-static/bin/darwin/**",
+    "!node_modules/ffprobe-static/bin/linux/**",
+    "!node_modules/ffprobe-static/bin/win32/ia32/**",
+    "!electron/native/**/build/**",
+    "!*.png",
+    "!preview*.png",
+    "!*.md",
+    "!README.md",
+    "!CONTRIBUTING.md",
+    "!LICENSE"
+  ],
+  "extraResources": [
+    {
+      "from": "public/wallpapers",
+      "to": "assets/wallpapers"
+    }
+  ],
+  "publish": [
+    {
+      "provider": "github",
+      "owner": "themanoftalent",
+      "repo": "RecordAle",
+      "tagNamePrefix": "v",
+      "publishAutoUpdate": true
+    }
+  ],
+
+  "mac": {
+    "hardenedRuntime": false,
+    "gatekeeperAssess": false,
+    "target": [
+      {
+        "target": "dmg",
+        "arch": ["arm64", "x64"]
+      },
+      {
+        "target": "zip",
+        "arch": ["arm64", "x64"]
+      }
+    ],
+    "icon": "icons/icons/mac/icon.icns",
+    "artifactName": "${productName}-${arch}.${ext}",
+    "extendInfo": {
+      "NSAudioCaptureUsageDescription": "RecordAle needs audio capture permission to record system audio.",
+      "NSCameraUsageDescription": "RecordAle needs camera access to record webcam video.",
+      "NSMicrophoneUsageDescription": "RecordAle needs microphone access to record voice audio.",
+      "NSCameraUseContinuityCameraDeviceType": true,
+      "com.apple.security.device.audio-input": true,
+      "CFBundleDocumentTypes": [
+        {
+          "CFBundleTypeName": "RecordAle Project",
+          "CFBundleTypeRole": "Editor",
+          "CFBundleTypeExtensions": ["recordale", "recoreale", "recordly"],
+          "CFBundleTypeIconFile": "icon.icns",
+          "LSHandlerRank": "Owner",
+          "LSItemContentTypes": ["com.softai.recordale.project", "com.softai.recoreale.project", "dev.recordly.app.project"]
+        }
+      ],
+      "UTExportedTypeDeclarations": [
+        {
+          "UTTypeIdentifier": "com.softai.recordale.project",
+          "UTTypeDescription": "RecordAle Project",
+          "UTTypeConformsTo": ["public.json"],
+          "UTTypeTagSpecification": {
+            "public.filename-extension": ["recordale", "recoreale", "recordly"],
+            "public.mime-type": "application/x-recordale-project"
+          }
+        }
+      ]
+    }
+  },
+  "dmg": {
+    "sign": false
+  },
+  "linux": {
+    "target": [
+      "AppImage"
+    ],
+    "icon": "icons/icons/png",
+    "artifactName": "${productName}-linux-x64.${ext}",
+    "category": "AudioVideo"
+  },
+  "win": {
+    "target": [
+      "nsis"
+    ],
+    "icon": "icons/icons/win/icon.ico",
+    "executableName": "RecordAle",
+    "artifactName": "${productName}-windows-${arch}.${ext}"
+  },
+  "nsis": {
+    "oneClick": false,
+    "allowToChangeInstallationDirectory": true,
+    "createDesktopShortcut": true,
+    "createStartMenuShortcut": true,
+    "shortcutName": "RecordAle"
+  }
+}
